@@ -1,0 +1,55 @@
+<div *ngIf="currentFile" class="progress">
+  <div
+    class="progress-bar progress-bar-info progress-bar-striped"
+    role="progressbar"
+    attr.aria-valuenow="{{ progress }}"
+    aria-valuemin="0"
+    aria-valuemax="100"
+    [ngStyle]="{ width: progress + '%' }"
+  >
+    {{ progress }}%
+  </div>
+</div>
+<div class="row">
+  <div class="col-xl-12">
+    <label class="btn btn-default">
+      <input type="file" (change)="selectFile($event)" />
+    </label>
+  </div>
+  <div class="col-xl-3 offset-xl-5">
+    <button name="File" class="btn btn-success" [disabled]="!selectedFiles" (click)="upload()">
+      Analizuj
+    </button>
+  </div>
+</div>
+
+
+
+<div class="alert alert-light" role="alert">{{ message }}</div>
+
+<div class="card">
+  <div class="card-header">Zdjęcie</div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">
+      <img [src]="imgURL" class="img-fluid" alt="">
+    </li>
+    <table class="table">
+      <thead>
+      <tr>
+        <th scope="col">
+          Obiekt:
+        </th>
+        <th scope="col">
+          Trafność:
+        </th>
+      </tr>
+      </thead>
+      <tbody *ngFor="let item of responseBody| keyvalue">
+        <tr>
+          <td>{{item.key}}</td>
+          <td>{{item.value}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </ul>
+</div>
