@@ -10,7 +10,7 @@
       "sourceRoot": "src",
       "prefix": "app",
       "architect": {
-        "build": {
+        "b uild": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "dist/udemyCourse",
@@ -24,7 +24,6 @@
               "src/assets"
             ],
             "styles": [
-              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css"
             ],
             "scripts": []
