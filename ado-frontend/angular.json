@@ -10,10 +10,10 @@
       "sourceRoot": "src",
       "prefix": "app",
       "architect": {
-        "b uild": {
+        "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/udemyCourse",
+            "outputPath": "dist/ado-front-prod",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -88,9 +88,14 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "node_modules/materialize-css/dist/css/materialize.min.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/materialize-css/dist/js/materialize.min.js",
+              "node_modules/@mdi/font/css/materialdesignicons.min.css"
+            ]
           }
         },
         "lint": {
