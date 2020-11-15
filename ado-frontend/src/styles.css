@@ -9,8 +9,11 @@ body{
   margin: 0;
   background-color: #303841;
   font-family: Playfair Display, serif;
-  min-height: 100vh;
+  color: white;
 }
+
+html, body{min-height:100%; overflow: auto;}
+body{height:100vh;}
 
 .full-height-grow{
   display: flex;
