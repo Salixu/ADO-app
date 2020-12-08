@@ -27,10 +27,10 @@ public class FilesController {
         String message = "";
         try{
             filesStorageService.save(file);
-            message = "Upload the file successfully: " + file.getOriginalFilename();
+            message = "Plik przesłano z sukcesem: " + file.getOriginalFilename();
             return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message));
         } catch (Exception e){
-            message = "Could not upload the file: " + file.getOriginalFilename();
+            message = "Nie można przesłać pliku: " + file.getOriginalFilename();
             return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ResponseMessage(message));
         }
     }

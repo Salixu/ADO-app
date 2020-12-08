@@ -6,6 +6,8 @@ import { UploadFilesComponent } from './components/upload-files/upload-files.com
 import {HttpClientModule} from '@angular/common/http';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { ApiResponseComponent } from './components/api-response/api-response.component';
+import { DndDirective } from './components/directives/dnd.directive';
+import { TestComponent } from './components/test/test.component';
 
 
 
@@ -15,7 +17,9 @@ import { ApiResponseComponent } from './components/api-response/api-response.com
     AppComponent,
     UploadFilesComponent,
     NavigationComponent,
-    ApiResponseComponent
+    ApiResponseComponent,
+    DndDirective,
+    TestComponent
   ],
   imports: [
     BrowserModule,

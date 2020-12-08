@@ -21,7 +21,6 @@ body{height:100vh;}
 }
 
 .container{
-  max-width: 1900px;
   marign: 0 auto;
   padding: 0 40px;
 }

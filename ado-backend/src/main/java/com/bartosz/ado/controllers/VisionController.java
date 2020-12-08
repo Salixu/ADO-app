@@ -16,6 +16,7 @@
 
 package com.bartosz.ado.controllers;
 
+import com.bartosz.ado.service.googleTranslate;
 import com.google.cloud.vision.v1.AnnotateImageResponse;
 import com.google.cloud.vision.v1.EntityAnnotation;
 import com.google.cloud.vision.v1.Feature.Type;
@@ -28,6 +29,8 @@ import org.springframework.core.io.ResourceLoader;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import com.bartosz.ado.service.googleTranslate;
+import com.bartosz.ado.utils.MapUtil;
 
 @CrossOrigin(origins =  "http://localhost:4200")
 @RestController
@@ -37,12 +40,13 @@ public class VisionController {
 
 
   @Autowired private CloudVisionTemplate cloudVisionTemplate;
+  private googleTranslate googleTranslate = new googleTranslate();
 
 
 
   @PostMapping("/extractLabels")
-  public Map<String, Float> extractLabels(@RequestParam("File") MultipartFile file, ModelMap map) {
-
+  public Map<String, String> extractLabels(@RequestParam("File") MultipartFile file, ModelMap map) {
+    Map<String, String> responseLabels;
     AnnotateImageResponse response =
         this.cloudVisionTemplate.analyzeImage(
             file.getResource(), Type.LABEL_DETECTION);
@@ -63,8 +67,9 @@ public class VisionController {
 
     map.addAttribute("annotations", imageLabels);
     map.addAttribute("imageUrl", file.getName());
+    responseLabels = googleTranslate.doTranslation(imageLabels);
 
-      return imageLabels;
+      return responseLabels;
   }
 
   @GetMapping("/extractText")

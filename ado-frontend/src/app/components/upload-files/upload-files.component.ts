@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import {Observable} from 'rxjs';
 import {UploadFileService} from '../../services/upload-file.service';
 import {HttpEventType, HttpResponse} from '@angular/common/http';
@@ -21,6 +21,8 @@ export class UploadFilesComponent implements OnInit {
   fileInfos: Observable<any>;
 
   constructor(private uploadService: UploadFileService) { }
+
+
 
   selectFile(event){
     this.selectedFiles = event.target.files;
