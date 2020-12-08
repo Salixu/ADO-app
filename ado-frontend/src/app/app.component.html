@@ -1,8 +1,50 @@
-<div class="container" style="width:600px">
-  <div style="margin: 20px">
-    <h3>ADO alpha</h3>
-    <h4>{{ title }}</h4>
+<app-navigation></app-navigation>
+<div class="main-component-title"><h1><span style="font-size: 65px; color: #00ADB5">A</span>utomatyczna <span style="font-size: 65px; color: #00ADB5">D</span>eskrypcja <span style="font-size: 65px; color: #00ADB5">O</span>brazu</h1></div>
+
+
+<section class="section-grid">
+
+  <div class="wrapper">
+    <div class="wrappers-titles"><span class="steps">KROK</span> <span class="numbers">1</span></div>
+    <div class="upload-wrapper" appDnd (files)="filesDropped($event)" >
+      <input name="file" id="file" class="inputFile" appDnd (files)="handleFileInput($event)" type="file">
+      <label *ngIf="displayButton" class="button" for="file">Upuść lub <br> wybierz plik</label>
+      <div *ngIf="files" class="centerImage">
+        <img *ngIf="files" [src]="files.url" class="imageToDisplay">
+      </div>
+    </div>
+
+    <div class="bottom-wrap">
+      <div class="wrappers-titles"><span class="steps">KROK</span> <span class="numbers">2</span></div>
+      <div (click)="upload()"  class="button-upload">Prześlij</div>
+    </div>
+
+  </div>
+  <div class="wrapper">
+    <div class="wrappers-titles"><span class="steps">KROK</span> <span class="numbers">3</span></div>
+    <div class="upload-wrapper" style="background: linear-gradient(0deg, rgba(0,173,181,0) 0%, rgba(0,173,181,0.4009978991596639) 100%);">
+      <div *ngIf="isSuccess" class="button-info">Tutaj zostanie <br> wyświetlony opis</div>
+      <table *ngIf="!isSuccess" class="table">
+        <thead>
+        <tr>
+          <th scope="col">
+            <h3>Obiekt:</h3>
+          </th>
+          <th scope="col">
+            <h3>Trafność:</h3>
+          </th>
+        </tr>
+        </thead>
+        <tbody *ngFor="let item of responseBody| keyvalue">
+        <tr>
+          <td>{{item.key}}</td>
+          <td>{{item.value}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 
-  <app-upload-files></app-upload-files>
-</div>
+</section>
+
+

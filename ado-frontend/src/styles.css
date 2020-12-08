@@ -1,1 +1,26 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+
+*, *::before, *::after{
+  box-sizing: border-box;
+}
+
+body{
+  padding: 0;
+  margin: 0;
+  background-color: #303841;
+  font-family: Playfair Display, serif;
+  color: white;
+}
+
+html, body{min-height:100%; overflow: auto;}
+body{height:100vh;}
+
+.full-height-grow{
+  display: flex;
+  flex-direction: column;
+}
+
+.container{
+  marign: 0 auto;
+  padding: 0 40px;
+}
