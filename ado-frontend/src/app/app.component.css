@@ -6,12 +6,12 @@
 }
 .wrapper{
   display: grid;
-  height: 70vh;
+  height: 60vh;
 }
 .upload-wrapper{
   border: 1px solid #FF5722;
   width: 100%;
-  height: inherit;
+  height: 60vh;
   display: grid;
   background: linear-gradient(180deg, rgba(0,173,181,0) 0%, rgba(0,173,181,0.4009978991596639) 100%);
 }
@@ -20,7 +20,7 @@
   height: auto;
   width: 100%;
   max-width: inherit;
-  max-height: 69vh;
+  max-height: 60vh;
 
 }
 
@@ -69,7 +69,7 @@
   display: grid;
   justify-content: center;
   gap: 5rem;
-  grid-template-columns: repeat(auto-fit,minmax(300px,620px));
+  grid-template-columns: repeat(auto-fit,minmax(300px,500px));
 }
 
 .button{
