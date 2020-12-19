@@ -16,6 +16,7 @@
 
 package com.bartosz.ado.controllers;
 
+import com.bartosz.ado.exceptions.FileUploadExceptionAdvice;
 import com.bartosz.ado.service.googleTranslate;
 import com.google.cloud.vision.v1.AnnotateImageResponse;
 import com.google.cloud.vision.v1.EntityAnnotation;
@@ -23,11 +24,14 @@ import com.google.cloud.vision.v1.Feature.Type;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
+
+import org.checkerframework.checker.units.qual.A;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.gcp.vision.CloudVisionTemplate;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MaxUploadSizeExceededException;
 import org.springframework.web.multipart.MultipartFile;
 import com.bartosz.ado.service.googleTranslate;
 import com.bartosz.ado.utils.MapUtil;
@@ -36,46 +40,48 @@ import com.bartosz.ado.utils.MapUtil;
 @RestController
 public class VisionController {
 
-  @Autowired private ResourceLoader resourceLoader;
+  @Autowired
+  private ResourceLoader resourceLoader;
+//  @Autowired
+//  private FileUploadExceptionAdvice exceptionAdvice;
 
-
-  @Autowired private CloudVisionTemplate cloudVisionTemplate;
+  @Autowired
+  private CloudVisionTemplate cloudVisionTemplate;
   private googleTranslate googleTranslate = new googleTranslate();
-
 
 
   @PostMapping("/extractLabels")
   public Map<String, String> extractLabels(@RequestParam("File") MultipartFile file, ModelMap map) {
+//            try {
     Map<String, String> responseLabels;
     AnnotateImageResponse response =
-        this.cloudVisionTemplate.analyzeImage(
-            file.getResource(), Type.LABEL_DETECTION);
+            this.cloudVisionTemplate.analyzeImage(
+                    file.getResource(), Type.LABEL_DETECTION);
 
     Map<String, Float> imageLabels =
-        response
-            .getLabelAnnotationsList()
-            .stream()
-            .collect(
-                Collectors.toMap(
-                    EntityAnnotation::getDescription,
-                    EntityAnnotation::getScore,
-                    (u, v) -> {
-                      throw new IllegalStateException(String.format("Duplicate key %s", u));
-                    },
-                    LinkedHashMap::new));
+            response
+                    .getLabelAnnotationsList()
+                    .stream()
+                    .collect(
+                            Collectors.toMap(
+                                    EntityAnnotation::getDescription,
+                                    EntityAnnotation::getScore,
+                                    (u, v) -> {
+                                      throw new IllegalStateException(String.format("Duplicate key %s", u));
+                                    },
+                                    LinkedHashMap::new));
 
 
     map.addAttribute("annotations", imageLabels);
     map.addAttribute("imageUrl", file.getName());
     responseLabels = googleTranslate.doTranslation(imageLabels);
 
-      return responseLabels;
-  }
+    return responseLabels;
+//            }catch (MaxUploadSizeExceededException exc){
+//              this.exceptionAdvice.handleMaxSizeException(exc);
+//            }
+//
+//  }
 
-  @GetMapping("/extractText")
-  public String extractText(String imageUrl) {
-    String textFromImage =
-        this.cloudVisionTemplate.extractTextFromImage(this.resourceLoader.getResource(imageUrl));
-    return "Text from image: " + textFromImage;
   }
 }
