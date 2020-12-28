@@ -1,5 +1,6 @@
 package com.bartosz.ado.service;
 
+import com.bartosz.ado.repositories.FilesStorageService;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
@@ -14,7 +15,7 @@ import java.nio.file.Paths;
 import java.util.stream.Stream;
 
 @Service
-public class FilesStorageServiceImpl implements FilesStorageService{
+public class FilesStorageServiceImpl implements FilesStorageService {
     private final Path root = Paths.get("uploads");
     @Override
     public void init() {

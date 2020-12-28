@@ -32,7 +32,6 @@ CREATE TABLE `user` (
                         `name` varchar(45) NOT NULL,
                         `surname` varchar(45) NOT NULL,
                         `email` varchar(45) NOT NULL,
-                        `salt` varchar(128) NOT NULL,
                         `hash` varchar(512) NOT NULL,
                         `date_created` timestamp,
                         PRIMARY KEY (id_user)
@@ -82,6 +81,31 @@ CREATE TABLE `image_description` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- Skrypt tworzący dla tabeli `user_roles`
+--
+
+CREATE TABLE `user_roles` (
+                              `id` int(11) NOT NULL AUTO_INCREMENT,
+                              `id_role` int(11) NOT NULL,
+                                     `id_user` int(11) NOT NULL,
+                                     PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Skrypt tworzący dla tabeli `role`
+--
+
+CREATE TABLE `role` (
+                        `id_role` int(11) NOT NULL AUTO_INCREMENT,
+                        `name` text NOT NULL,
+                        PRIMARY KEY (id_role)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+INSERT INTO `role` (`id_role`, `name`) VALUES
+(1, 'ROLE_USER'),
+(2, 'ROLE_ADMIN');
+
+--
 -- Dodanie foreign keys do tabeli user_request
 --
 ALTER TABLE `user_request`
@@ -93,6 +117,12 @@ ALTER TABLE `user_request`
 --
 ALTER TABLE `image`
     ADD CONSTRAINT FOREIGN KEY (`id_user`) REFERENCES `user`(`id_user`);
+
+-- --
+-- -- Dodanie foreign keys do tabeli user_roles
+-- --
+-- ALTER TABLE `user_roles`
+--     ADD CONSTRAINT FOREIGN KEY (`id_user`) REFERENCES `user`(`id_user`);
 
 --
 -- Dodanie foreign keys do tabeli image_description

@@ -1,8 +1,8 @@
 package com.bartosz.ado.controllers;
 
-import com.bartosz.ado.message.ResponseMessage;
+import com.bartosz.ado.payloads.Responses.MessageResponse;
 import com.bartosz.ado.model.FileInfo;
-import com.bartosz.ado.service.FilesStorageService;
+import com.bartosz.ado.repositories.FilesStorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
@@ -23,15 +23,15 @@ public class FilesController {
     FilesStorageService filesStorageService;
 
     @PostMapping("/upload")
-    public ResponseEntity<ResponseMessage> uploadFile(@RequestParam("File")MultipartFile file){
+    public ResponseEntity<MessageResponse> uploadFile(@RequestParam("File")MultipartFile file){
         String message = "";
         try{
             filesStorageService.save(file);
             message = "Plik przesłano z sukcesem: " + file.getOriginalFilename();
-            return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message));
+            return ResponseEntity.status(HttpStatus.OK).body(new MessageResponse(message));
         } catch (Exception e){
             message = "Nie można przesłać pliku: " + file.getOriginalFilename();
-            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ResponseMessage(message));
+            return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new MessageResponse(message));
         }
     }
     @GetMapping("/files")

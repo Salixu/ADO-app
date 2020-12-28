@@ -42,46 +42,46 @@ public class VisionController {
 
   @Autowired
   private ResourceLoader resourceLoader;
-//  @Autowired
-//  private FileUploadExceptionAdvice exceptionAdvice;
+  @Autowired
+  private FileUploadExceptionAdvice exceptionAdvice;
 
   @Autowired
   private CloudVisionTemplate cloudVisionTemplate;
   private googleTranslate googleTranslate = new googleTranslate();
 
 
-  @PostMapping("/extractLabels")
+  @PostMapping("/api/extractLabels")
   public Map<String, String> extractLabels(@RequestParam("File") MultipartFile file, ModelMap map) {
-//            try {
-    Map<String, String> responseLabels;
-    AnnotateImageResponse response =
-            this.cloudVisionTemplate.analyzeImage(
-                    file.getResource(), Type.LABEL_DETECTION);
+    try {
+      Map<String, String> responseLabels;
+      AnnotateImageResponse response =
+              this.cloudVisionTemplate.analyzeImage(
+                      file.getResource(), Type.LABEL_DETECTION);
 
-    Map<String, Float> imageLabels =
-            response
-                    .getLabelAnnotationsList()
-                    .stream()
-                    .collect(
-                            Collectors.toMap(
-                                    EntityAnnotation::getDescription,
-                                    EntityAnnotation::getScore,
-                                    (u, v) -> {
-                                      throw new IllegalStateException(String.format("Duplicate key %s", u));
-                                    },
-                                    LinkedHashMap::new));
+      Map<String, Float> imageLabels =
+              response
+                      .getLabelAnnotationsList()
+                      .stream()
+                      .collect(
+                              Collectors.toMap(
+                                      EntityAnnotation::getDescription,
+                                      EntityAnnotation::getScore,
+                                      (u, v) -> {
+                                        throw new IllegalStateException(String.format("Duplicate key %s", u));
+                                      },
+                                      LinkedHashMap::new));
 
 
-    map.addAttribute("annotations", imageLabels);
-    map.addAttribute("imageUrl", file.getName());
-    responseLabels = googleTranslate.doTranslation(imageLabels);
+      map.addAttribute("annotations", imageLabels);
+      map.addAttribute("imageUrl", file.getName());
+      responseLabels = googleTranslate.doTranslation(imageLabels);
 
+      return responseLabels;
+    } catch (MaxUploadSizeExceededException exc) {
+      this.exceptionAdvice.handleMaxSizeException(exc);
+    }
+    Map<String, String> responseLabels = null;
     return responseLabels;
-//            }catch (MaxUploadSizeExceededException exc){
-//              this.exceptionAdvice.handleMaxSizeException(exc);
-//            }
-//
-//  }
-
   }
 }
+
