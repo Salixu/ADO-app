@@ -2,11 +2,13 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpEvent, HttpRequest} from '@angular/common/http';
 import {Observable} from 'rxjs';
 
+
+const AUTH_API = 'http://localhost:8080/api';
+
 @Injectable({
   providedIn: 'root'
 })
 export class UploadFileService {
-  private baseUrl = 'http://localhost:8080/api';
 
   constructor(private http: HttpClient) {}
 
@@ -14,7 +16,7 @@ export class UploadFileService {
     const formData: FormData = new FormData();
     formData.append('File', file);
      // ReportProgress set to true to exposes progress events, its very expensive
-    const req = new HttpRequest('POST', `${this.baseUrl}/extractLabels`, formData, {
+    const req = new HttpRequest('POST', `${AUTH_API}/extractLabels`, formData, {
       reportProgress: true,
       responseType: 'json'
     });

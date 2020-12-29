@@ -1,0 +1,18 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/theming';
+@include mat-core();
+
+$ado-app-primary: mat-palette($mat-cyan);
+$ado-app-accent:  mat-palette($mat-pink, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$ado-app-warn:    mat-palette($mat-red);
+
+$ado-app: mat-light-theme((
+  color: (
+    primary: $ado-app-primary,
+    accent: $ado-app-accent,
+    warn: $ado-app-warn,
+  )
+));
+@include angular-material-theme($ado-app);

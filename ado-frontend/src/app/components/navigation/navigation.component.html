@@ -1,13 +1,19 @@
 <header class="main-header">
-<a href="/" class="brand-logo">
+<div class="brand-logo">
   <img src="assets/images/logo.svg" alt="">
-</a>
+</div>
 
 <nav class="main-nav">
   <ul>
-    <li><a href="">Stwórz konto</a></li>
-    <li><a href="">Zaloguj się</a></li>
-    <li><a href="">O mnie</a></li>
+    <li><a
+    (click)="onCreateAccount()">
+      Stwórz konto</a></li>
+    <li><a
+      (click)="onLogIn()">
+      Zaloguj się</a></li>
+    <li><a
+      (click)="onAboutMe()">
+      O mnie</a></li>
   </ul>
 </nav>
 </header>

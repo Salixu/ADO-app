@@ -1,0 +1,47 @@
+.main-component-title h1{
+  text-align: center;
+  font-size: 2.5rem;
+  margin: 0;
+  padding: 0;
+}
+
+.wrapper{
+  display: grid;
+  height: 60vh;
+}
+
+.section-grid{
+  margin: 15px;
+  display: grid;
+  justify-content: center;
+  gap: 5rem;
+  grid-template-columns: repeat(auto-fit,minmax(300px,500px));
+}
+
+.input-width{
+  width: 70%;
+}
+
+.upload-wrapper{
+  width: 100%;
+  height: 60vh;
+  display: grid;
+  background: linear-gradient(0deg, rgba(34,193,195,0.6138830532212884) 0%, rgba(255,87,34,0.5326505602240896) 100%);
+  -webkit-box-shadow: 10px 10px 10px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 10px 10px 10px 0px rgba(0,0,0,0.75);
+  box-shadow: 10px 10px 10px 0px rgba(0,0,0,0.75);
+}
+
+.button:hover{
+  cursor: pointer;
+}
+
+.form {
+  text-align: center;
+  width: 100%;
+  padding-top: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: center;
+  height: inherit;
+}

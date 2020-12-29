@@ -24,3 +24,20 @@ body{height:100vh;}
   marign: 0 auto;
   padding: 0 40px;
 }
+
+li a{
+  cursor: pointer;
+}
+
+.button{
+  margin: auto;
+  width: 40%;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  background-color: #FF5722;
+  border-radius: 39px;
+  text-align: center;
+}
+
+html, body { height: 100%; }
+

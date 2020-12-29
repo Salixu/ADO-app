@@ -2,6 +2,7 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import {Observable} from 'rxjs';
 import {UploadFileService} from '../../services/upload-file.service';
 import {HttpEventType, HttpResponse} from '@angular/common/http';
+import {FileHandle} from '../directives/dnd.directive';
 
 @Component({
   selector: 'app-upload-files',
@@ -10,51 +11,55 @@ import {HttpEventType, HttpResponse} from '@angular/common/http';
 })
 export class UploadFilesComponent implements OnInit {
 
-  selectedFiles: FileList;
-  currentFile: File;
-  progress = 0;
-  message = '';
+
+  files: FileHandle = null;
+  displayButton = true;
+  isSuccess = true;
+
   public imagePath;
   imgURL: any;
   responseBody;
 
   fileInfos: Observable<any>;
+  private message: any;
 
-  constructor(private uploadService: UploadFileService) { }
+  constructor(
+    private fileUploadService: UploadFileService,
+  ) {}
 
 
+  ngOnInit(): void {}
 
-  selectFile(event){
-    this.selectedFiles = event.target.files;
+
+  filesDropped(files: FileHandle): void {
+    this.displayButton = false;
+    this.files = files;
+  }
+
+  handleFileInput(files: FileHandle): void {
+    this.files = files;
   }
 
   upload(){
-    this.progress = 0;
-    this.currentFile = this.selectedFiles.item(0);
-    // displaying image
     const reader = new FileReader();
-    this.imagePath = this.currentFile;
-    reader.readAsDataURL(this.currentFile);
-    this.uploadService.upload(this.currentFile).subscribe(
+    const file = this.files.file;
+    this.imagePath = file;
+    reader.readAsDataURL(file);
+    this.fileUploadService.upload(file).subscribe(
       event => {
         if (event.type === HttpEventType.UploadProgress){
-          this.progress = Math.round(100 * event.loaded / event.total);
         }else if (event instanceof HttpResponse){
           this.message = event.body.message;
           this.imgURL = reader.result;
           this.responseBody = event.body;
-          console.log(event.body);
+          console.log(this.responseBody);
+          this.isSuccess = false;
         }
       },
       err => {
-        this.progress = 0;
-        this.message = 'Could not upload the file!';
-        this.currentFile = undefined;
+        this.message = 'Nie można przesłać pliku';
+        this.files = undefined;
       });
-    this.selectedFiles = undefined;
-  }
-
-  ngOnInit(): void {
   }
 
 }

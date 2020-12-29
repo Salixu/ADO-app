@@ -1,0 +1,128 @@
+<div class="main-component-title"><h1>Zarejestruj się</h1></div>
+
+<section class="section-grid">
+
+  <div class="wrapper">
+    <div class="upload-wrapper">
+      <div class="form">
+        <form *ngIf="!isSuccessful"
+              name="form"
+              (ngSubmit)="f.form.valid && onSubmit()"
+              #f="ngForm"
+              novalidate>
+        <mat-form-field class="input-width">
+          <mat-label>Imie</mat-label>
+          <input
+            type="text"
+            minlength="3"
+            maxlength="20"
+            name="name"
+            [(ngModel)]="form.name"
+            required
+            #username="ngModel"
+            matInput
+          />
+        </mat-form-field>
+        <div class="alert-danger" *ngIf="f.submitted && username.invalid">
+          <div *ngIf="username.errors.required">Nazwa użytkownika jest wymagana</div>
+          <div *ngIf="username.errors.minlength">
+            Nazwa użytkownika musi składać się z conajmniej 3 znaków
+          </div>
+          <div *ngIf="username.errors.maxlength">
+            Nazwa użytkownika musi składać się z maksymalnie 20 znaków
+          </div>
+        </div>
+          <mat-form-field class="input-width">
+            <mat-label>Nazwisko</mat-label>
+            <input
+              type="text"
+              minlength="3"
+              maxlength="20"
+              name="surname"
+              [(ngModel)]="form.surname"
+              required
+              #usersurname="ngModel"
+              matInput
+            />
+          </mat-form-field>
+          <div class="alert-danger" *ngIf="f.submitted && usersurname.invalid">
+            <div *ngIf="usersurname.errors.required">Nazwisko użytkownika jest wymagane</div>
+            <div *ngIf="usersurname.errors.minlength">
+              Nazwisko użytkownika musi składać się z conajmniej 3 znaków
+            </div>
+            <div *ngIf="usersurname.errors.maxlength">
+              Nazwisko użytkownika musi składać się z maksymalnie 20 znaków
+            </div>
+          </div>
+
+          <mat-form-field class="input-width">
+            <mat-label>Email</mat-label>
+            <input
+              type="email"
+              name="email"
+              [(ngModel)]="form.email"
+              required
+              email
+              #email="ngModel"
+              matInput
+            />
+          </mat-form-field>
+          <div class="alert-danger" *ngIf="f.submitted && email.invalid">
+            <div *ngIf="username.errors.required">Email jest wymagany</div>
+            <div *ngIf="email.errors.email">
+              Niepoprawny format adresu email
+            </div>
+          </div>
+
+          <mat-form-field class="input-width">
+            <mat-label>Hasło</mat-label>
+            <input
+              type="password"
+              name="password"
+              [(ngModel)]="form.password"
+              required
+              minlength="6"
+              #password="ngModel"
+              matInput
+            />
+          </mat-form-field>
+          <div class="alert-danger" *ngIf="f.submitted && password.invalid">
+            <div *ngIf="password.errors.required">Hasło jest wymagane</div>
+            <div *ngIf="password.errors.minlength">Hasło musi składać się z minimum 6 znaków</div>
+          </div>
+          <mat-form-field class="input-width">
+            <mat-label>Powtórz Hasło</mat-label>
+            <input
+              type="password"
+              name="password2"
+              [(ngModel)]="form.password2"
+              required
+              minlength="6"
+              #password2="ngModel"
+              matInput
+            />
+          </mat-form-field>
+          <div class="alert-danger" *ngIf="f.submitted && (password.invalid || password2.invalid)">
+            <div *ngIf="password2.errors.required">Hasło jest wymagane</div>
+            <div *ngIf="password2.errors.minlength">Hasło musi składać się z minimum 6 znaków</div>
+          </div>
+          <div class="alert-danger">
+            <div *ngIf="password.value !== password2.value">Hasła muszą być identyczne</div>
+          </div>
+          <div class="form-group">
+            <button mat-stroked-button color="primary" class="btn-form">
+              <span>Zarejestruj się</span>
+            </button>          </div>
+
+          <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
+            Nie udało się utworzyć konta<br />{{ errorMessage }}
+          </div>
+
+        </form>
+        <div class="alert alert-success" *ngIf="isSuccessful">
+          Udało ci się utworzyć konto
+        </div>
+      </div>
+      </div>
+    </div>
+</section>
