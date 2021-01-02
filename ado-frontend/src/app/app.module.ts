@@ -4,7 +4,6 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { UploadFilesComponent } from './components/upload-files/upload-files.component';
 import { HttpClientModule } from '@angular/common/http';
-import { NavigationComponent } from './components/navigation/navigation.component';
 import { ApiResponseComponent } from './components/api-response/api-response.component';
 import { DndDirective } from './components/directives/dnd.directive';
 import { TestComponent } from './components/test/test.component';
@@ -19,13 +18,13 @@ import {MaterialModule} from './material';
 import {FormsModule} from '@angular/forms';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { FrontPageComponent } from './components/front-page/front-page.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     UploadFilesComponent,
-    NavigationComponent,
     ApiResponseComponent,
     DndDirective,
     TestComponent,
@@ -34,7 +33,8 @@ import { FrontPageComponent } from './components/front-page/front-page.component
     UserhubComponent,
     AboutMeComponent,
     NotFoundComponent,
-    FrontPageComponent
+    FrontPageComponent,
+    ProfileComponent
   ],
   exports:[
     MaterialModule,

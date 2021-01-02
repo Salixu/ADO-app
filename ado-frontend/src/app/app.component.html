@@ -1,5 +1,34 @@
-<app-navigation></app-navigation>
+<header class="main-header">
+  <div class="brand-logo">
+    <img src="assets/images/logo.svg" alt="">
+  </div>
 
+  <nav class="main-nav">
+    <ul *ngIf="!isLoggedIn">
+      <li><a
+        (click)="onCreateAccount()">
+        Stwórz konto</a></li>
+      <li><a
+        (click)="onLogIn()">
+        Zaloguj się</a></li>
+      <li><a
+        (click)="onAboutMe()">
+        O mnie</a></li>
+    </ul>
+    <ul *ngIf="isLoggedIn">
+      <li><a
+        (click)="profile()">
+        Twoje konto</a></li>
+      <li><a
+        (click)="description()">
+        Deskrypcja</a></li>
+      <li><a
+        (click)="logout()">
+        Wyloguj</a></li>
+
+    </ul>
+  </nav>
+</header>
 <router-outlet></router-outlet>
 
 

@@ -28,9 +28,9 @@ public class User {
 
     public User(int id_user, String name, String surname, String email, String hash, String date_created) {
         this.id_user = id_user;
-        this.name = name;
+        this.name = email;
         this.surname = surname;
-        this.email = email;
+        this.email = name;
         this.hash = hash;
         this.date_created = date_created;
     }

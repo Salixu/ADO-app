@@ -6,6 +6,7 @@ import {AboutMeComponent} from './components/about-me/about-me.component';
 import {RegisterComponent} from './components/register/register.component';
 import {NotFoundComponent} from './components/not-found/not-found.component';
 import {FrontPageComponent} from './components/front-page/front-page.component';
+import {ProfileComponent} from './components/profile/profile.component';
 
 
 const routes: Routes = [
@@ -17,6 +18,7 @@ const routes: Routes = [
   },
   { path: 'about-me', component: AboutMeComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'profile/:id', component: ProfileComponent },
   { path: '', component: FrontPageComponent },
   { path: '**', component: NotFoundComponent },
 ];

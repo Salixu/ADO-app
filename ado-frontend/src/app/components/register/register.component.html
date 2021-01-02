@@ -110,9 +110,10 @@
             <div *ngIf="password.value !== password2.value">Hasła muszą być identyczne</div>
           </div>
           <div class="form-group">
-            <button mat-stroked-button color="primary" class="btn-form">
+            <button [disabled]="password.value !== password2.value"  mat-stroked-button color="primary" class="btn-form">
               <span>Zarejestruj się</span>
-            </button>          </div>
+            </button>
+          </div>
 
           <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
             Nie udało się utworzyć konta<br />{{ errorMessage }}

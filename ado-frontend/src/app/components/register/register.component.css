@@ -25,9 +25,10 @@
 .upload-wrapper{
   width: 100%;
   height: 60vh;
+  border: 1px solid #FF5722;
   display: grid;
-  background: linear-gradient(0deg, rgba(34,193,195,0.6138830532212884) 0%, rgba(255,87,34,0.5326505602240896) 100%);
-  -webkit-box-shadow: 10px 10px 10px 0px rgba(0, 0, 0, 0.75);
+  background: rgb(255,255,255);
+  background: linear-gradient(0deg, rgba(255,255,255,0.39539565826330536) 0%, rgba(255,255,255,0.6054796918767507) 100%);  -webkit-box-shadow: 10px 10px 10px 0px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 10px 10px 10px 0px rgba(0,0,0,0.75);
   box-shadow: 10px 10px 10px 0px rgba(0,0,0,0.75);
 }

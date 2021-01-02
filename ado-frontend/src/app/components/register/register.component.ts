@@ -19,7 +19,7 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.passwordValid) {
+
     this.authService.register(this.form).subscribe(
       data => {
         this.isSuccessful = true;
@@ -31,13 +31,6 @@ export class RegisterComponent implements OnInit {
       }
     );
   }
-  }
 
-  passwordValidation(): boolean {
-    if ( this.form.password !== this.form.password2){
-      return true;
-    }
-    this.passwordValid = true;
-    return false;
-  }
+
 }
