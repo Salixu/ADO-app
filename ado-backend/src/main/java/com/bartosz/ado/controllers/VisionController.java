@@ -17,31 +17,38 @@
 package com.bartosz.ado.controllers;
 
 import com.bartosz.ado.exceptions.FileUploadExceptionAdvice;
-import com.bartosz.ado.service.googleTranslate;
+import com.bartosz.ado.models.Image;
+import com.bartosz.ado.services.ImageDbService;
+import com.bartosz.ado.services.UserService;
+import com.bartosz.ado.services.googleTranslate;
 import com.google.cloud.vision.v1.AnnotateImageResponse;
 import com.google.cloud.vision.v1.EntityAnnotation;
 import com.google.cloud.vision.v1.Feature.Type;
+
+import java.io.File;
+import java.io.IOException;
+import java.sql.Blob;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import org.checkerframework.checker.units.qual.A;
+
+import com.google.common.primitives.Bytes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.gcp.vision.CloudVisionTemplate;
-import org.springframework.core.io.ResourceLoader;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MaxUploadSizeExceededException;
 import org.springframework.web.multipart.MultipartFile;
-import com.bartosz.ado.service.googleTranslate;
-import com.bartosz.ado.utils.MapUtil;
 
-@CrossOrigin(origins =  "http://localhost:4200")
+@CrossOrigin("http://localhost:4200")
 @RestController
+@RequestMapping("/api/description")
+
 public class VisionController {
 
-  @Autowired
-  private ResourceLoader resourceLoader;
+  private final ImageDbService imageDbService;
+  private final UserService userService;
+
   @Autowired
   private FileUploadExceptionAdvice exceptionAdvice;
 
@@ -50,13 +57,20 @@ public class VisionController {
   private googleTranslate googleTranslate = new googleTranslate();
 
 
-  @PostMapping("/api/extractLabels")
-  public Map<String, String> extractLabels(@RequestParam("File") MultipartFile file, ModelMap map) {
+  public VisionController(
+          ImageDbService imageDbService,
+          UserService userService){
+    this.imageDbService = imageDbService;
+    this.userService = userService;
+  }
+  @PostMapping("/extractLabels")
+  public Map<String, String> extractLabels(@RequestParam("File") MultipartFile descriptionRequest, @RequestParam("user_id") int user_id) {
     try {
       Map<String, String> responseLabels;
+
       AnnotateImageResponse response =
               this.cloudVisionTemplate.analyzeImage(
-                      file.getResource(), Type.LABEL_DETECTION);
+                      descriptionRequest.getResource(), Type.LABEL_DETECTION);
 
       Map<String, Float> imageLabels =
               response
@@ -71,17 +85,26 @@ public class VisionController {
                                       },
                                       LinkedHashMap::new));
 
-
-      map.addAttribute("annotations", imageLabels);
-      map.addAttribute("imageUrl", file.getName());
       responseLabels = googleTranslate.doTranslation(imageLabels);
 
+      insertImageAndDescription(
+              user_id,
+              responseLabels,
+              descriptionRequest.getBytes(),
+              descriptionRequest.getResource().getFilename()
+      );
+
       return responseLabels;
-    } catch (MaxUploadSizeExceededException exc) {
-      this.exceptionAdvice.handleMaxSizeException(exc);
+    } catch (MaxUploadSizeExceededException | IOException exc) {
+      this.exceptionAdvice.handleMaxSizeException((MaxUploadSizeExceededException) exc);
     }
     Map<String, String> responseLabels = null;
     return responseLabels;
   }
+
+  private void insertImageAndDescription(int id, Map<String, String> description, byte[] image, String fileName){
+      this.imageDbService.insertImage(new Image(this.userService.findById(id), fileName, image,description.toString()));
+  }
+
 }
 

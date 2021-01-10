@@ -1,7 +1,7 @@
 package com.bartosz.ado.controllers;
 
 import com.bartosz.ado.payloads.Responses.MessageResponse;
-import com.bartosz.ado.model.FileInfo;
+import com.bartosz.ado.models.FileInfo;
 import com.bartosz.ado.repositories.FilesStorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;

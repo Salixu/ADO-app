@@ -4,7 +4,7 @@
   </div>
 
   <nav class="main-nav">
-    <ul *ngIf="!isLoggedIn">
+    <ul *ngIf="!isLogged()">
       <li><a
         (click)="onCreateAccount()">
         Stwórz konto</a></li>
@@ -15,7 +15,7 @@
         (click)="onAboutMe()">
         O mnie</a></li>
     </ul>
-    <ul *ngIf="isLoggedIn">
+    <ul *ngIf="isLogged()">
       <li><a
         (click)="profile()">
         Twoje konto</a></li>

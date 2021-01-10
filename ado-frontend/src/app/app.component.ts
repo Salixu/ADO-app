@@ -29,6 +29,10 @@ export class AppComponent implements OnInit{
     }
   }
 
+  isLogged(): boolean{
+    return !!this.tokenStorageService.getToken();
+  }
+
   onCreateAccount() {
     this.router.navigate(['register']);
   }
@@ -47,11 +51,11 @@ export class AppComponent implements OnInit{
   }
 
   profile() {
-    this.router.navigate(['about-me']);
-
+    const id = this.tokenStorageService.getUser();
+    this.router.navigate(['profile/' + id.id]);
   }
 
   description() {
-    this.router.navigate(['about-me']);
+    this.router.navigate(['description']);
   }
 }

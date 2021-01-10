@@ -1,21 +1,25 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpEvent, HttpRequest} from '@angular/common/http';
+import {HttpClient, HttpEvent, HttpHeaders, HttpRequest} from '@angular/common/http';
 import {Observable} from 'rxjs';
+import {TokenStorageService} from './token-storage.service';
 
 
-const AUTH_API = 'http://localhost:8080/api';
+const AUTH_API = 'http://localhost:8080/api/description';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class UploadFileService {
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private tokenStorageService: TokenStorageService) {}
 
   upload(file: File): Observable<HttpEvent<any>> {
     const formData: FormData = new FormData();
     formData.append('File', file);
-     // ReportProgress set to true to exposes progress events, its very expensive
+    formData.append('user_id', this.tokenStorageService.getUser().id);
     const req = new HttpRequest('POST', `${AUTH_API}/extractLabels`, formData, {
       reportProgress: true,
       responseType: 'json'

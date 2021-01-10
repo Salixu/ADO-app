@@ -1,6 +1,7 @@
 
 package com.bartosz.ado;
 
+import com.sun.xml.bind.v2.TODO;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
@@ -16,5 +17,4 @@ public class Application  {
   public static void main(String[] args) {
     SpringApplication.run(Application.class, args);
   }
-
 }

@@ -1,8 +1,8 @@
 package com.bartosz.ado.controllers;
 
-import com.bartosz.ado.model.ERole;
-import com.bartosz.ado.model.Role;
-import com.bartosz.ado.model.User;
+import com.bartosz.ado.models.ERole;
+import com.bartosz.ado.models.Role;
+import com.bartosz.ado.models.User;
 import com.bartosz.ado.payloads.Requests.LoginRequest;
 import com.bartosz.ado.payloads.Requests.SignupRequest;
 import com.bartosz.ado.payloads.Responses.JwtResponse;
@@ -28,7 +28,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 
-@CrossOrigin(origins = "*", maxAge = 3600)
+@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
@@ -79,7 +79,7 @@ public class AuthController {
 
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
-        if (userRepository.existsByName(signUpRequest.getName())) {
+        if (userRepository.existsByEmail(signUpRequest.getEmail())) {
             return ResponseEntity
                     .badRequest()
                     .body(new MessageResponse("Istnieje konto o takim adresie email!"));

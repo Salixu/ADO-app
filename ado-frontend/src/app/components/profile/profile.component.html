@@ -1,1 +1,7 @@
-<p>profile works!</p>
+{{ imageObject.image_name }}<br>
+{{ imageObject.description }}<br>
+
+  <ng-template [ngIf]="image">
+    <img [src]="image" class="img-thumbnail" >
+  </ng-template>
+
