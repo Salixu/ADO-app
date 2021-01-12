@@ -20,20 +20,17 @@ import com.bartosz.ado.exceptions.FileUploadExceptionAdvice;
 import com.bartosz.ado.models.Image;
 import com.bartosz.ado.services.ImageDbService;
 import com.bartosz.ado.services.UserService;
-import com.bartosz.ado.services.googleTranslate;
+import com.bartosz.ado.services.GoogleTranslate;
 import com.google.cloud.vision.v1.AnnotateImageResponse;
 import com.google.cloud.vision.v1.EntityAnnotation;
 import com.google.cloud.vision.v1.Feature.Type;
 
-import java.io.File;
 import java.io.IOException;
-import java.sql.Blob;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
 
-import com.google.common.primitives.Bytes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.gcp.vision.CloudVisionTemplate;
 import org.springframework.web.bind.annotation.*;
@@ -54,7 +51,7 @@ public class VisionController {
 
   @Autowired
   private CloudVisionTemplate cloudVisionTemplate;
-  private googleTranslate googleTranslate = new googleTranslate();
+  private GoogleTranslate googleTranslate = new GoogleTranslate();
 
 
   public VisionController(
@@ -103,7 +100,7 @@ public class VisionController {
   }
 
   private void insertImageAndDescription(int id, Map<String, String> description, byte[] image, String fileName){
-      this.imageDbService.insertImage(new Image(this.userService.findById(id), fileName, image,description.toString()));
+      this.imageDbService.insertImage(new Image(this.userService.findById(id).getId(), fileName, image,description.toString()));
   }
 
 }

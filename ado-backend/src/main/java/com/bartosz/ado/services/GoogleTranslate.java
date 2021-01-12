@@ -4,7 +4,7 @@ import com.google.cloud.translate.*;
 import java.util.HashMap;
 import java.util.Map;
 
-public class googleTranslate {
+public class GoogleTranslate {
     Translate translate = TranslateOptions.getDefaultInstance().getService();
 
     public Map<String, String> doTranslation(Map<String, Float> text){
@@ -62,4 +62,19 @@ public class googleTranslate {
         }
         return map;
     }
+
+    public Map<String, String> StringToMapPlain(String text){
+        text = text.substring(1, text.length()-1);
+        String[] keyValuePairs = text.split(",");
+        Map<String, String> map = new HashMap<>();
+
+        for(String pair : keyValuePairs)
+        {
+            String[] entry = pair.split("=");
+            entry[1] = entry[1].replaceAll(",", ".");
+            map.put(entry[0], entry[1]);
+        }
+        return map;
+    }
+
 }

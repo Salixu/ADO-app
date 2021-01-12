@@ -3,15 +3,18 @@ package com.bartosz.ado.models.dtos;
 import lombok.Builder;
 import lombok.Data;
 
-import java.io.File;
+import java.util.Map;
+import java.util.Set;
 
 
 @Data
 @Builder
 public class ImageDto {
-    private int id;
-    private UserDto user;
-    private String image_name;
-    private String description;
+    private String imageName;
+    private Map<String, String> description;
     private byte[] image;
+//
+//    private Set<String> imageName;
+//    private Set<String> description;
+//    private Set<byte[]> image;
 }

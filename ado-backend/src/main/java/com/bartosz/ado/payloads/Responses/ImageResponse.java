@@ -1,8 +1,18 @@
 package com.bartosz.ado.payloads.Responses;
 
-import java.sql.Blob;
+import com.bartosz.ado.models.dtos.ImageDto;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
+import java.util.Set;
+
+@Getter
+@Setter
+@AllArgsConstructor
 public class ImageResponse {
-    private Blob image;
-
+    int totalItems;
+    Set<ImageDto> images;
+    int totalPages;
+    int currentPage;
 }

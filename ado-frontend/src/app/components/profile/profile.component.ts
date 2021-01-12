@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {TokenStorageService} from '../../services/token-storage.service';
 import {DescriptedImageService} from '../../services/descripted-image.service';
 import {Subscription} from 'rxjs';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+
+
 
 @Component({
   selector: 'app-profile',
@@ -10,40 +13,33 @@ import {Subscription} from 'rxjs';
 })
 export class ProfileComponent implements OnInit {
 
+  srcData: SafeResourceUrl;
   isLoggedIn = false;
   private profileServiceSub: Subscription;
   public imageObject: any;
+  public tableData;
   public image: any;
 
 
   constructor(
     private tokenStorage: TokenStorageService,
-    private descriptedImage: DescriptedImageService
+    private descriptedImage: DescriptedImageService,
+    private sanitizer: DomSanitizer
   ) {}
 
   ngOnInit(): void {
-    const reader = new FileReader();
     this.profileServiceSub = this.descriptedImage.getImages().subscribe(
     (data) =>
     {
-      this.imageObject = data;
-      this.convertBlobToImage(this.imageObject.image);
+      this.prepareData(data);
     });
   }
 
-  convertBlobToImage(image: Blob){
-    const reader = new FileReader();
-    reader.addEventListener(`load`,
-      () => {
-        this.image = reader.result;
-      },
-      false);
 
-    if (image) {
-      if (image.type !== `application/pdf`) {
-        reader.readAsDataURL(image);
-      }
-    }
+  prepareData(data: object){
+    // const image = 'data:image;base64,' + data[1].image;
+    // this.image = this.sanitizer.bypassSecurityTrustUrl(image);
+    // this.tableData = data[1].description;
+    console.log(data);
   }
-
 }

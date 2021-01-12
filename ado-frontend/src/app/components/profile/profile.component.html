@@ -1,7 +1,31 @@
-{{ imageObject.image_name }}<br>
-{{ imageObject.description }}<br>
+<!--{{ imageObject.imageName }}<br>-->
+<!--{{ imageObject.description }}<br>-->
 
-  <ng-template [ngIf]="image">
-    <img [src]="image" class="img-thumbnail" >
-  </ng-template>
 
+<!--    <img [src]="image"  >-->
+
+
+<div class="wrapper">
+  <div class="wrappers-titles"><span class="steps">KROK</span> <span class="numbers">3</span></div>
+  <div class="upload-wrapper" style="background: linear-gradient(0deg, rgba(0,173,181,0) 0%, rgba(0,173,181,0.4009978991596639) 100%);">
+    <div class="button-info">Tutaj zostanie <br> wyświetlony opis</div>
+    <table  class="table">
+      <thead>
+      <tr>
+        <th scope="col">
+          <h3>Obiekt:</h3>
+        </th>
+        <th scope="col">
+          <h3>Trafność:</h3>
+        </th>
+      </tr>
+      </thead>
+      <tbody *ngFor="let item of tableData| keyvalue">
+      <tr>
+        <td>{{item.key}}</td>
+        <td>{{item.value}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
