@@ -1,9 +1,11 @@
 package com.bartosz.ado.services;
 import com.google.cloud.translate.*;
+import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.Map;
 
+@Service
 public class GoogleTranslate {
     Translate translate = TranslateOptions.getDefaultInstance().getService();
 

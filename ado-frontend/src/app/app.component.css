@@ -172,6 +172,17 @@ th {
   height: 140px;
 }
 
+.footer-background{
+  background-color: #1E2328;
+  height: 50px;
+  width: inherit;
+  text-align: center;
+  padding: 10px;
+  margin-top: 117px;
+}
+
+
+
 @media (max-width: 600px) {
 
 }

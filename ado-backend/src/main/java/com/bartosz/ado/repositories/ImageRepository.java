@@ -17,4 +17,7 @@ public interface ImageRepository extends JpaRepository<Image, Integer> {
 
     @Query("Select i from Image i where i.id_user = :id")
     Page<Image> selectAllImages(@Param("id") int id, Pageable paging);
+
+    @Query("Select i from Image i where i.id_user = :id and i.image_name like %:name%")
+    Page<Image> selectFilteredImages(@Param("id")int id, Pageable paging, @Param("name")String name);
 }

@@ -51,8 +51,8 @@ export class AppComponent implements OnInit{
   }
 
   profile() {
-    const id = this.tokenStorageService.getUser();
-    this.router.navigate(['profile/' + id.id]);
+    const name = this.tokenStorageService.getUser();
+    this.router.navigate(['profile/' + name.username]);
   }
 
   description() {

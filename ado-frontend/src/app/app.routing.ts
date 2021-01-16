@@ -14,7 +14,7 @@ const routes: Routes = [
   { path: 'about-me', component: AboutMeComponent },
   { path: 'description', component: UploadFilesComponent, canActivate: [AuthGuardGuard] },
   { path: 'register', component: RegisterComponent },
-  { path: 'profile/:id', component: ProfileComponent, canActivate: [AuthGuardGuard] },
+  { path: 'profile/:name', component: ProfileComponent, canActivate: [AuthGuardGuard] },
   { path: '', component: FrontPageComponent },
   { path: '**', component: NotFoundComponent },
 ];

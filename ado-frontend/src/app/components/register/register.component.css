@@ -27,8 +27,7 @@
   height: 60vh;
   border: 1px solid #FF5722;
   display: grid;
-  background: rgb(255,255,255);
-  background: linear-gradient(0deg, rgba(255,255,255,0.39539565826330536) 0%, rgba(255,255,255,0.6054796918767507) 100%);  -webkit-box-shadow: 10px 10px 10px 0px rgba(0, 0, 0, 0.75);
+  background: rgba(255,255,255, 0.15);
   -moz-box-shadow: 10px 10px 10px 0px rgba(0,0,0,0.75);
   box-shadow: 10px 10px 10px 0px rgba(0,0,0,0.75);
 }

@@ -1,31 +1,75 @@
-<!--{{ imageObject.imageName }}<br>-->
-<!--{{ imageObject.description }}<br>-->
-
-
-<!--    <img [src]="image"  >-->
-
-
-<div class="wrapper">
-  <div class="wrappers-titles"><span class="steps">KROK</span> <span class="numbers">3</span></div>
-  <div class="upload-wrapper" style="background: linear-gradient(0deg, rgba(0,173,181,0) 0%, rgba(0,173,181,0.4009978991596639) 100%);">
-    <div class="button-info">Tutaj zostanie <br> wyświetlony opis</div>
-    <table  class="table">
-      <thead>
-      <tr>
-        <th scope="col">
-          <h3>Obiekt:</h3>
-        </th>
-        <th scope="col">
-          <h3>Trafność:</h3>
-        </th>
-      </tr>
-      </thead>
-      <tbody *ngFor="let item of tableData| keyvalue">
-      <tr>
-        <td>{{item.key}}</td>
-        <td>{{item.value}}</td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
+<div style="text-align: center">
+  <mat-form-field>
+    <mat-label style="color:white;">Szukaj</mat-label>
+    <input matInput type="text" [(ngModel)]="name">
+    <button mat-button *ngIf="name" matSuffix mat-icon-button aria-label="Clear" (click)="name=''"></button>
+  </mat-form-field>
+            <button
+              mat-icon-button color="primary" aria-label="Example icon button with a menu icon"
+              (click)="getData()">
+              <mat-icon>search_icon</mat-icon>
+            </button>
 </div>
+
+
+
+
+      <div
+        class="section-grid full-width-highlight"
+        *ngFor="
+          let image of images | paginate : {
+                  itemsPerPage: pageSize,
+                  currentPage: page,
+                  totalItems: count
+                };
+          let i = index
+        "
+        [class.active]="i == currentIndex"
+        (click)="setActiveImage(image, i)"
+      >
+
+        <div class="wrapper">
+          <div class="wrappers-titles"><span class="steps">{{ image.imageName }}</span> </div>
+          <div class="upload-wrapper">
+            <div class="centerImage">
+              <img class="imageToDisplay" [src]=" image.image "  >
+            </div>
+          </div>
+
+        </div>
+
+        <div class="wrapper">
+          <div class="upload-wrapper" style="background: linear-gradient(0deg, rgba(0,173,181,0) 0%, rgba(0,173,181,0.4009978991596639) 100%);">
+            <table  class="table">
+              <thead>
+              <tr>
+                <th scope="col">
+                  <h3>Obiekt:</h3>
+                </th>
+                <th scope="col">
+                  <h3>Trafność:</h3>
+                </th>
+              </tr>
+              </thead>
+              <tbody *ngFor="let item of image.description| keyvalue">
+              <tr>
+                <td>{{item.key}}</td>
+                <td>{{item.value}}</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+
+  <div class="pagination">
+    <pagination-controls
+      previousLabel=""
+      nextLabel=""
+      [responsive]="true"
+      (pageChange)="handlePageChange($event)"
+    ></pagination-controls>
+  </div>
+
+

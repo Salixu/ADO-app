@@ -6,23 +6,26 @@
   <div class="wrapper">
     <div class="wrappers-titles"><span class="steps">KROK</span> <span class="numbers">1</span></div>
     <div class="upload-wrapper" appDnd (files)="filesDropped($event)" >
-      <input name="file" id="file" class="inputFile" appDnd (files)="handleFileInput($event)" type="file">
-      <label *ngIf="displayButton" class="button" for="file">Upuść lub <br> wybierz plik</label>
+      <input name="file" id="file0" class="inputFile" appDnd (files)="handleFileInput($event)" type="file">
+      <label *ngIf="displayButton" class="button" for="file0">Upuść lub <br> wybierz plik</label>
       <div *ngIf="files" class="centerImage">
         <img *ngIf="files" [src]="files.url" class="imageToDisplay">
       </div>
     </div>
 
     <div class="bottom-wrap">
+      <input name="file" id="file1" class="inputFile" appDnd (files)="handleFileInput($event)" type="file">
+      <label class="button-upload-file" for="file1">Wybierz plik</label>
       <div class="wrappers-titles"><span class="steps">KROK</span> <span class="numbers">2</span></div>
       <div (click)="upload()"  class="button-upload">Prześlij</div>
     </div>
 
   </div>
-  <div class="wrapper">
+  <div class="wrapper-right">
     <div class="wrappers-titles"><span class="steps">KROK</span> <span class="numbers">3</span></div>
     <div class="upload-wrapper" style="background: linear-gradient(0deg, rgba(0,173,181,0) 0%, rgba(0,173,181,0.4009978991596639) 100%);">
-      <div *ngIf="isSuccess" class="button-info">Tutaj zostanie <br> wyświetlony opis</div>
+      <div *ngIf="isSuccess && !error" class="button-info">Tutaj zostanie <br> wyświetlony opis</div>
+      <div *ngIf="error" class="button-info-error">BŁĄD: <br> {{ message }}</div>
       <table *ngIf="!isSuccess" class="table">
         <thead>
         <tr>

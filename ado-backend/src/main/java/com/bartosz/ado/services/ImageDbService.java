@@ -29,4 +29,8 @@ public class ImageDbService {
     public Page<Image> getImagesByUserId(int id, Pageable paging){
         return this.imageRepository.selectAllImages(id, paging);
     }
+
+    public Page<Image> getImagesByUserIdFilter(Integer idUser, Pageable paging, String name) {
+        return this.imageRepository.selectFilteredImages(idUser, paging, name);
+    }
 }

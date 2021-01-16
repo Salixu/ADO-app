@@ -82,6 +82,7 @@ public class VisionController {
                                       },
                                       LinkedHashMap::new));
 
+
       responseLabels = googleTranslate.doTranslation(imageLabels);
 
       insertImageAndDescription(

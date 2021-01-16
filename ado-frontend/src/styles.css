@@ -12,7 +12,7 @@ body{
   color: white;
 }
 
-html, body{min-height:100%; overflow: auto;}
+html, body{min-height:100%;}
 body{height:100vh;}
 
 .full-height-grow{
@@ -38,6 +38,7 @@ li a{
   border-radius: 39px;
   text-align: center;
 }
+
 
 html, body { height: 100%; }
 

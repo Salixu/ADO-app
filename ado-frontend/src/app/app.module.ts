@@ -19,6 +19,7 @@ import {FormsModule} from '@angular/forms';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { FrontPageComponent } from './components/front-page/front-page.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 @NgModule({
@@ -39,14 +40,15 @@ import { ProfileComponent } from './components/profile/profile.component';
   exports:[
     MaterialModule,
   ],
-  imports: [
-    BrowserModule,
-    MaterialModule,
-    HttpClientModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    FormsModule
-  ],
+    imports: [
+        BrowserModule,
+        MaterialModule,
+        HttpClientModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        FormsModule,
+        NgxPaginationModule
+    ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
 })

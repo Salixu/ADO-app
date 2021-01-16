@@ -3,6 +3,7 @@ package com.bartosz.ado.controllers;
 import com.bartosz.ado.models.Image;
 import com.bartosz.ado.models.dtos.ImageDto;
 import com.bartosz.ado.models.mappers.ImageMapper;
+import com.bartosz.ado.services.GoogleTranslate;
 import com.bartosz.ado.services.ImageDbService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -18,9 +19,11 @@ import java.util.*;
 @RequestMapping("/api")
 public class ImagesController {
     private final ImageDbService imageDbService;
+    private final GoogleTranslate googleTranslate;
 
-    public ImagesController(ImageDbService imgDbService){
+    public ImagesController(ImageDbService imgDbService, GoogleTranslate googleTranslate){
         this.imageDbService = imgDbService;
+        this.googleTranslate = googleTranslate;
     }
 
     @GetMapping("/image/{id}")
@@ -30,16 +33,22 @@ public class ImagesController {
 
     @GetMapping("/images/{id}")
     public ResponseEntity<List<ImageDto>> getImagesById(@PathVariable("id") Integer idUser,
+                                                       @RequestParam(required = false)String name,
                                                        @RequestParam(defaultValue = "0") int page,
                                                        @RequestParam(defaultValue = "3") int size){
         try {
-            List<Image> imagesDto = new ArrayList<Image>();
             Pageable paging = PageRequest.of(page, size);
             Page<Image> pageDtos;
+            List<ImageDto> imagesDto = new ArrayList<ImageDto>();
 
-            pageDtos = this.imageDbService.getImagesByUserId(idUser, paging);
-            imagesDto = pageDtos.getContent();
+            if (name == null){
+                pageDtos = this.imageDbService.getImagesByUserId(idUser, paging);
 
+            }else{
+                pageDtos = this.imageDbService.getImagesByUserIdFilter(idUser, paging, name);
+            }
+
+            imagesDto = ImageMapper.mapToImagesDtos(pageDtos.getContent());
 
             Map<String, Object> response = new HashMap<>();
             response.put("images", imagesDto);

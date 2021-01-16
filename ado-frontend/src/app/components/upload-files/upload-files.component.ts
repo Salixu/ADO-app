@@ -19,7 +19,7 @@ export class UploadFilesComponent implements OnInit {
   public imagePath;
   imgURL: any;
   responseBody;
-
+  error = false;
   fileInfos: Observable<any>;
   private message: any;
 
@@ -37,6 +37,7 @@ export class UploadFilesComponent implements OnInit {
   }
 
   handleFileInput(files: FileHandle): void {
+    this.displayButton = false;
     this.files = files;
   }
 
@@ -52,11 +53,11 @@ export class UploadFilesComponent implements OnInit {
           this.message = event.body.message;
           this.imgURL = reader.result;
           this.responseBody = event.body;
-          console.log(event.body);
           this.isSuccess = false;
         }
       },
       err => {
+        this.error = true;
         this.message = 'Nie można przesłać pliku';
         this.files = undefined;
       });
