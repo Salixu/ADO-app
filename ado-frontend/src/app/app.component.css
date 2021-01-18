@@ -147,6 +147,11 @@ th {
   align-items: center;
 }
 
+.main-nav{
+  padding-left: 1rem;
+  text-align: center;
+}
+
 .main-nav ul {
   display: flex;
   flex-wrap: wrap;
@@ -184,7 +189,9 @@ th {
 
 
 @media (max-width: 600px) {
-
+ .container{
+   padding: 20px;
+ }
 }
 
 @media (max-width: 375px) {

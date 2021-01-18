@@ -31,6 +31,14 @@ public class ImagesController {
         return ImageMapper.mapToImageDto(this.imageDbService.getImageByUserId(idUser));
     }
 
+    @DeleteMapping("/images")
+    public void deleteImage(
+            @RequestParam() int id)
+    {
+        this.imageDbService.deleteImageById(id);
+    }
+
+
     @GetMapping("/images/{id}")
     public ResponseEntity<List<ImageDto>> getImagesById(@PathVariable("id") Integer idUser,
                                                        @RequestParam(required = false)String name,

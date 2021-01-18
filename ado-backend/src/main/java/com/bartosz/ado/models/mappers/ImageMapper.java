@@ -21,6 +21,7 @@ public class ImageMapper {
         GoogleTranslate googleTranslate =  new GoogleTranslate();
 
         return ImageDto.builder()
+                .id(image.getId())
                 .imageName(image.getImage_name())
                 .description(googleTranslate.StringToMapPlain(image.getDescription()))
                 .image(image.getImage())

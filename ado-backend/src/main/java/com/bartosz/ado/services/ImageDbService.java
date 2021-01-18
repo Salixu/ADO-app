@@ -8,9 +8,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import com.bartosz.ado.repositories.ImageRepository;
 
-import java.util.List;
-import java.util.Set;
-
 @Service
 public class ImageDbService {
     private final ImageRepository imageRepository;
@@ -32,5 +29,9 @@ public class ImageDbService {
 
     public Page<Image> getImagesByUserIdFilter(Integer idUser, Pageable paging, String name) {
         return this.imageRepository.selectFilteredImages(idUser, paging, name);
+    }
+
+    public void deleteImageById(int id){
+        this.imageRepository.deleteImageById(id);
     }
 }

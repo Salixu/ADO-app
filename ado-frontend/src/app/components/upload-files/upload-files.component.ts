@@ -54,6 +54,7 @@ export class UploadFilesComponent implements OnInit {
           this.imgURL = reader.result;
           this.responseBody = event.body;
           this.isSuccess = false;
+          this.error = true;
         }
       },
       err => {

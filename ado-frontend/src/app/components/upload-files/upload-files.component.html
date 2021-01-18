@@ -25,8 +25,8 @@
     <div class="wrappers-titles"><span class="steps">KROK</span> <span class="numbers">3</span></div>
     <div class="upload-wrapper" style="background: linear-gradient(0deg, rgba(0,173,181,0) 0%, rgba(0,173,181,0.4009978991596639) 100%);">
       <div *ngIf="isSuccess && !error" class="button-info">Tutaj zostanie <br> wyświetlony opis</div>
-      <div *ngIf="error" class="button-info-error">BŁĄD: <br> {{ message }}</div>
-      <table *ngIf="!isSuccess" class="table">
+      <div *ngIf="isSuccess && error" class="button-info-error">BŁĄD: <br> {{ message }}</div>
+      <table *ngIf="!isSuccess && error" class="table">
         <thead>
         <tr>
           <th scope="col">

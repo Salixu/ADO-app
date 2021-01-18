@@ -19,4 +19,8 @@ export class DescriptedImageService {
   getImages(params: any): Observable<any>{
     return this.httpClient.get<any>(AUTH_API + this.tokenStorage.getUser().id, { params });
   }
+
+  deleteImage(params: any): Observable<any>{
+    return this.httpClient.delete(AUTH_API, { params } );
+  }
 }
