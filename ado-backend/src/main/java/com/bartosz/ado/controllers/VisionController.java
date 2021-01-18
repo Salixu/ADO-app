@@ -37,7 +37,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MaxUploadSizeExceededException;
 import org.springframework.web.multipart.MultipartFile;
 
-@CrossOrigin("http://localhost:4200")
+//@CrossOrigin(origins = "http://ado-frontend.herokuapp.com", maxAge = 3600)
+@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
+
 @RestController
 @RequestMapping("/api/description")
 

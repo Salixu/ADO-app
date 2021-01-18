@@ -27,6 +27,9 @@ SET time_zone = "+00:00";
 -- Skrypt tworzący dla tabeli `user`
 --
 
+CREATE SCHEMA `ado` ;
+
+
 CREATE TABLE `user` (
                         `id` int(11) NOT NULL AUTO_INCREMENT,
                         `name` varchar(45) NOT NULL,
