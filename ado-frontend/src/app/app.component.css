@@ -161,13 +161,12 @@ th {
 
 .main-nav a {
   font-size: 28px;
-  color: white;
   text-decoration: none;
   padding: 1rem;
 }
 
 .main-nav a:hover{
-  color: beige;
+  color: wheat;
 }
 
 .main-header{
@@ -178,12 +177,14 @@ th {
 }
 
 .footer-background{
+  position: fixed;
+  left: 0;
+  bottom: 0;
   background-color: #1E2328;
   height: 50px;
-  width: inherit;
+  width: 100%;
+  padding-top: 10px;
   text-align: center;
-  padding: 10px;
-  margin-top: 117px;
 }
 
 

@@ -20,8 +20,8 @@ img {
 }
 
 img:hover {
-  -webkit-transform:scale(1.5);
-  transform:scale(1.5);
+  -webkit-transform:scale(1.2);
+  transform:scale(1.2);
 }
 
 mat-icon:hover{
@@ -34,13 +34,18 @@ mat-icon:hover{
   background-color: transparent!important;
 }
 
+.pagination /deep/ .ngx-pagination  {
+  padding: 0!important;
+}
+
 .pagination  /deep/ .ngx-pagination a, .ngx-pagination button{
   color: white!important;
 }
 
 .pagination{
-  padding: 10px;
+  padding-bottom: 50px;
   text-align: center;
+  align-content: center;
   font-size: 1.8rem;
 }
 

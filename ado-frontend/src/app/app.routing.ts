@@ -1,7 +1,6 @@
 import {AuthGuardGuard} from './services/auth-guard.guard';
 import {RouterModule, Routes} from '@angular/router';
 import {LoginComponent} from './components/login/login.component';
-import {AboutMeComponent} from './components/about-me/about-me.component';
 import {RegisterComponent} from './components/register/register.component';
 import {NotFoundComponent} from './components/not-found/not-found.component';
 import {FrontPageComponent} from './components/front-page/front-page.component';
@@ -11,7 +10,6 @@ import {UploadFilesComponent} from './components/upload-files/upload-files.compo
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
-  { path: 'about-me', component: AboutMeComponent },
   { path: 'description', component: UploadFilesComponent, canActivate: [AuthGuardGuard] },
   { path: 'register', component: RegisterComponent },
   { path: 'profile/:name', component: ProfileComponent, canActivate: [AuthGuardGuard] },

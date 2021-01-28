@@ -12,8 +12,12 @@ body{
   color: white;
 }
 
+.active-nav{
+  color: rgba(255, 87, 34, 0.7)!important;
+}
+
 html, body{min-height:100%;}
-body{height:100vh;}
+body{height:100%;}
 
 .full-height-grow{
   display: flex;

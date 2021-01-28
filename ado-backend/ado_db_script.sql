@@ -71,6 +71,14 @@ CREATE TABLE `image` (
                                   PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+
+CREATE TABLE `product` (
+                         `id` int(11) NOT NULL AUTO_INCREMENT,
+                         `name` varchar(256) NOT NULL,
+                         `image` MEDIUMBLOB,
+                         `price` varchar (1024) NOT NULL,
+                         PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 -- --------------------------------------------------------
 
 --

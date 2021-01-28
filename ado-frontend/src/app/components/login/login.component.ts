@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../../services/auth.service';
 import {TokenStorageService} from '../../services/token-storage.service';
-import {ActivatedRoute, Router} from '@angular/router';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -23,7 +23,8 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-
+    const element = document.getElementById('onLogIn');
+    element.className = 'active';
   }
 
   onSubmit() {

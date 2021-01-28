@@ -69,7 +69,8 @@
 }
 
 .section-grid{
-  margin: 15px;
+  margin-top: 20px;
+  margin-bottom: 60px;
   display: grid;
   justify-content: center;
   gap: 5rem;
@@ -93,6 +94,108 @@
   overflow: hidden;
   position: absolute;
   z-index: -1;
+}
+
+.loading{
+  margin-top: auto;
+  text-align: center;
+}
+
+.animation-wrap{
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: auto;
+  align-self: center;
+}
+
+.blob0{
+  background:  #2BD5FB;
+  border-radius: 50%;
+  margin: 15px;
+  height: 20px;
+  width: 20px;
+  box-shadow: 0 0 0 0 rgba(255, 87, 34, 1);
+  transform: scale(1);
+  animation: pulse 2s infinite;
+}
+
+.blob1{
+  background:  #2BD5FB;
+  border-radius: 50%;
+  margin: 15px;
+  height: 20px;
+  width: 20px;
+  box-shadow: 0 0 0 0 rgba(0, 0, 0, 1);
+  transform: scale(1);
+  animation: pulse 2s infinite;
+  animation-delay: 2s;
+}
+
+.blob2{
+  background:  #2BD5FB;
+  border-radius: 50%;
+  margin: 15px;
+  height: 20px;
+  width: 20px;
+  box-shadow: 0 0 0 0 rgba(0, 0, 0, 1);
+  transform: scale(1);
+  animation: pulse 2s infinite;
+  animation-delay: 4s;
+}
+
+.blob3{
+  background:  #2BD5FB;
+  border-radius: 50%;
+  margin: 15px;
+  height: 20px;
+  width: 20px;
+  box-shadow: 0 0 0 0 rgba(0, 0, 0, 1);
+  transform: scale(1);
+  animation: pulse 2s infinite;
+  animation-delay: 6s;
+}
+
+.blob4{
+  background:  #2BD5FB;
+  border-radius: 50%;
+  margin: 15px;
+  height: 20px;
+  width: 20px;
+  box-shadow: 0 0 0 0 rgba(0, 0, 0, 1);
+  transform: scale(1);
+  animation: pulse 2s infinite;
+  animation-delay: 8s;
+}
+
+.blob5{
+  background:  #2BD5FB;
+  border-radius: 50%;
+  margin: 15px;
+  height: 20px;
+  width: 20px;
+  box-shadow: 0 0 0 0 rgba(0, 0, 0, 1);
+  transform: scale(1);
+  animation: pulse 2s infinite;
+  animation-delay: 10s;
+}
+
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(255, 87, 34, 1);
+  }
+
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+  }
+
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  }
 }
 
 .button-info{

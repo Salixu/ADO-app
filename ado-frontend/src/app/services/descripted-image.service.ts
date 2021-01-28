@@ -4,7 +4,7 @@ import { TokenStorageService } from './token-storage.service';
 import {Observable} from 'rxjs';
 
 const AUTH_API = 'http://localhost:8080/api/images/';
-
+// const AUTH_API = 'https://ado-live.herokuapp.com/api/images/';
 
 @Injectable({
   providedIn: 'root'

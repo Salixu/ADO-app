@@ -50,6 +50,8 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    const element = document.getElementById('profile');
+    element.className = 'active';
     this.getData();
   }
 

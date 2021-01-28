@@ -20,6 +20,8 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { FrontPageComponent } from './components/front-page/front-page.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 
 @NgModule({
@@ -47,7 +49,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
         AppRoutingModule,
         BrowserAnimationsModule,
         FormsModule,
-        NgxPaginationModule
+        NgxPaginationModule,
+        ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
     ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]

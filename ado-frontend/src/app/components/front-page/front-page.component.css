@@ -1,0 +1,17 @@
+.hero{
+  display: grid;
+  grid-template-columns: 10% 1fr 1fr 10%;
+  background-color: #06f4ff5e;
+  align-items: center;
+  justify-items: center;
+  justify-content: center;
+  height: 70vh;
+  -moz-box-shadow: 10px 10px 10px 0px rgba(0,0,0,0.75);
+  box-shadow: 10px 10px 10px 0px rgba(0,0,0,0.75);
+}
+
+
+
+#box1{
+  grid-column: 2/3;
+}

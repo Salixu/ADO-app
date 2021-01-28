@@ -1,13 +1,24 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import {Observable} from 'rxjs';
-import {UploadFileService} from '../../services/upload-file.service';
+import {DescriptImageService} from '../../services/descript-image.service';
 import {HttpEventType, HttpResponse} from '@angular/common/http';
 import {FileHandle} from '../directives/dnd.directive';
+import {state, style, trigger} from '@angular/animations';
 
 @Component({
   selector: 'app-upload-files',
   templateUrl: './upload-files.component.html',
-  styleUrls: ['./upload-files.component.css']
+  styleUrls: ['./upload-files.component.css'],
+  animations: [
+    trigger('loading',[
+      state(
+        'none',
+        style({
+          display: 'none'
+        })
+      )
+    ])
+  ]
 })
 export class UploadFilesComponent implements OnInit {
 
@@ -15,6 +26,7 @@ export class UploadFilesComponent implements OnInit {
   files: FileHandle = null;
   displayButton = true;
   isSuccess = true;
+  isFinish = false;
 
   public imagePath;
   imgURL: any;
@@ -24,7 +36,7 @@ export class UploadFilesComponent implements OnInit {
   private message: any;
 
   constructor(
-    private fileUploadService: UploadFileService,
+    private fileUploadService: DescriptImageService,
   ) {}
 
 
@@ -42,6 +54,7 @@ export class UploadFilesComponent implements OnInit {
   }
 
   upload(){
+    this.isFinish = true;
     const reader = new FileReader();
     const file = this.files.file;
     this.imagePath = file;
@@ -50,6 +63,7 @@ export class UploadFilesComponent implements OnInit {
       event => {
         if (event.type === HttpEventType.UploadProgress){
         }else if (event instanceof HttpResponse){
+          this.isFinish = false;
           this.message = event.body.message;
           this.imgURL = reader.result;
           this.responseBody = event.body;

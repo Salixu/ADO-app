@@ -6,24 +6,24 @@
 
   <nav class="main-nav">
     <ul *ngIf="!isLogged()">
-      <li><a
+      <li id="onAboutMe"><a
+        (click)="onAboutMe()">
+        Strona główna</a></li>
+      <li class="" id="onCreateAccount"><a
         (click)="onCreateAccount()">
         Stwórz konto</a></li>
-      <li><a
+      <li id="onLogIn"><a
         (click)="onLogIn()">
         Zaloguj się</a></li>
-      <li><a
-        (click)="onAboutMe()">
-        O mnie</a></li>
     </ul>
     <ul *ngIf="isLogged()">
-      <li><a
+      <li id="profile"><a
         (click)="profile()">
         Twoje konto</a></li>
-      <li><a
+      <li id="description"><a
         (click)="description()">
         Deskrypcja</a></li>
-      <li><a
+      <li id="logout"><a
         (click)="logout()">
         Wyloguj</a></li>
 
@@ -32,7 +32,7 @@
 </header>
 <router-outlet></router-outlet>
 </div>
-<div class="footer-background">
+<div class="footer-background container">
   Bartosz Glanowski
 </div>
 

@@ -28,8 +28,8 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 
-//@CrossOrigin(origins = "http://ado-frontend.herokuapp.com", maxAge = 3600)
-@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
+//@CrossOrigin(origins = "http://ado-frontend.herokuapp.com", maxAge = 1800)
+@CrossOrigin(origins = "http://localhost:4200", maxAge = 1800)
 
 @RestController
 @RequestMapping("/api/auth")

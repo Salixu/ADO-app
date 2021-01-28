@@ -24,7 +24,16 @@
   <div class="wrapper-right">
     <div class="wrappers-titles"><span class="steps">KROK</span> <span class="numbers">3</span></div>
     <div class="upload-wrapper" style="background: linear-gradient(0deg, rgba(0,173,181,0) 0%, rgba(0,173,181,0.4009978991596639) 100%);">
-      <div *ngIf="isSuccess && !error" class="button-info">Tutaj zostanie <br> wyświetlony opis</div>
+      <div *ngIf="isSuccess && !error && !isFinish" class="button-info">Tutaj zostanie <br> wyświetlony opis</div>
+      <div *ngIf="isFinish && !error" class="loading">Przetwarzanie</div>
+      <div *ngIf="isFinish && !error" class="animation-wrap">
+        <div class="blob0"></div>
+        <div class="blob1"></div>
+        <div class="blob2"></div>
+        <div class="blob3"></div>
+        <div class="blob4"></div>
+        <div class="blob5"></div>
+      </div>
       <div *ngIf="isSuccess && error" class="button-info-error">BŁĄD: <br> {{ message }}</div>
       <table *ngIf="!isSuccess && error" class="table">
         <thead>

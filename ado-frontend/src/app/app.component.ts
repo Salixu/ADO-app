@@ -34,28 +34,64 @@ export class AppComponent implements OnInit{
   }
 
   onCreateAccount() {
+    const clear = document.getElementsByClassName('active-nav');
+    for (let i = 0; i < clear.length; i++){
+      clear.item(i).className = ' ';
+    }
+    const element = document.getElementById('onCreateAccount');
+    element.className = 'active-nav';
     this.router.navigate(['register']);
   }
 
   onLogIn() {
+    const clear = document.getElementsByClassName('active-nav');
+    for (let i = 0; i < clear.length; i++){
+      clear.item(i).className = ' ';
+    }
+    const element = document.getElementById('onLogIn');
+    element.className = 'active-nav';
     this.router.navigate(['login']);
   }
 
   onAboutMe() {
-    this.router.navigate(['about-me']);
+    const clear = document.getElementsByClassName('active-nav');
+    for (let i = 0; i < clear.length; i++){
+      clear.item(i).className = ' ';
+    }
+    const element = document.getElementById('onAboutMe');
+    element.className = 'active-nav';
+    this.router.navigate(['']);
   }
 
   logout() {
+    const clear = document.getElementsByClassName('active-nav');
+    for (let i = 0; i < clear.length; i++){
+      clear.item(i).className = ' ';
+    }
+    const element = document.getElementById('logout');
+    element.className = 'active-nav';
     this.tokenStorageService.signOut();
     window.location.reload();
   }
 
   profile() {
+    const clear = document.getElementsByClassName('active-nav');
+    for (let i = 0; i < clear.length; i++){
+      clear.item(i).className = ' ';
+    }
+    const element = document.getElementById('profile');
+    element.className = 'active-nav';
     const name = this.tokenStorageService.getUser();
     this.router.navigate(['profile/' + name.username]);
   }
 
   description() {
+    const clear = document.getElementsByClassName('active-nav');
+    for (let i = 0; i < clear.length; i++){
+      clear.item(i).className = ' ';
+    }
+    const element = document.getElementById('description');
+    element.className = 'active-nav';
     this.router.navigate(['description']);
   }
 }
